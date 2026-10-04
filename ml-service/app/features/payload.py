@@ -26,14 +26,14 @@ DIGITS_REGEX = re.compile(r"\d+")
 def normalize_payload(text: str) -> str:
     """Decodes URL encoding and normalizes numbers to prevent overfitting to specific IDs."""
     if not text:
-        return ""
+        return "<empty>"
     try:
         decoded = urllib.parse.unquote_plus(text)
     except Exception:
         decoded = text
-    # Replace long digit sequences with generic token <NUM>
-    normalized = DIGITS_REGEX.sub("<NUM>", decoded.lower().strip())
-    return normalized
+    # Replace digit sequences with generic token <num>
+    normalized = DIGITS_REGEX.sub("<num>", decoded.lower().strip())
+    return normalized if normalized else "<empty>"
 
 
 def calculate_entropy(text: str) -> float:
@@ -73,7 +73,7 @@ class PayloadFeatureExtractor:
             analyzer="char_wb",
             ngram_range=(3, 5),
             max_features=max_tfidf_features,
-            min_df=2,
+            min_df=1,
             sublinear_tf=True,
         )
         self.lexical_scaler = StandardScaler()

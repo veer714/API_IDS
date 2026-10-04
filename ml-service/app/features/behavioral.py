@@ -8,7 +8,7 @@ Guarantees zero future lookahead (strictly causal/past-only windows).
 
 import math
 from collections import defaultdict, deque
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from typing import Dict, List, Optional, Tuple, Any
 
 import numpy as np
@@ -42,7 +42,7 @@ class TrafficStateTracker:
         Records the current event and returns (requests_per_minute, failed_requests, unique_endpoints)
         strictly using past events.
         """
-        now = timestamp or datetime.utcnow()
+        now = timestamp or datetime.now(timezone.utc)
 
         # Prune expired timestamps
         cutoff_1m = now - self.window_1m
