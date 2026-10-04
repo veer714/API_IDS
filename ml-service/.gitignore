@@ -1,0 +1,26 @@
+# Virtual Environment
+.venv/
+venv/
+ENV/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Testing & Coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Logs & temporary files
+*.log
+scratch/
+.tmp/
+
+# Model & cache artifacts that shouldn't be directly committed if very large
+*.tmp
+
+# Raw and processed datasets (reproducible via scripts/generate_demo_data.py)
+data/
