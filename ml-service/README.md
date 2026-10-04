@@ -4,7 +4,7 @@
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.110+-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
 [![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-1.4+-F7931E?logo=scikit-learn&logoColor=white)](https://scikit-learn.org/)
 [![XGBoost](https://img.shields.io/badge/XGBoost-2.0+-EB5424)](https://xgboost.readthedocs.io/)
-[![Tests Passing](https://img.shields.io/badge/Pytest-23%2F23%20Passing-brightgreen?logo=pytest&logoColor=white)](tests/)
+[![Tests Passing](https://img.shields.io/badge/Pytest-23%2F23%20Passing-brightgreen?logo=pytest&logoColor=white)](#-testing--validation)
 [![Docker Ready](https://img.shields.io/badge/Docker-Ready-2496ED?logo=docker&logoColor=white)](Dockerfile)
 [![Research Report](https://img.shields.io/badge/DOCX%20Report-545%20KB-blue?logo=microsoft-word&logoColor=white)](docs/API_Sentinel_ML_Research_Report.docx)
 
