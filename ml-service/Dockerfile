@@ -1,4 +1,4 @@
-# API Sentinel - ML Microservice Dockerfile (Root Build Context)
+# API Sentinel - Machine Learning Microservice Dockerfile
 FROM python:3.12-slim
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
@@ -13,14 +13,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Python dependencies
-COPY ml-service/requirements.txt .
+COPY requirements.txt .
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
 
 # Copy application source code and model artifacts
-COPY ml-service/app/ app/
-COPY ml-service/models/artifacts/ models/artifacts/
+COPY app/ app/
+COPY models/artifacts/ models/artifacts/
 
+# Health check to ensure model artifacts are loaded
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
     CMD curl -f http://localhost:8000/health || exit 1
 

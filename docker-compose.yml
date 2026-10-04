@@ -1,0 +1,72 @@
+services:
+  # ============================================================================
+  # ML Inference Microservice
+  # ============================================================================
+  ml-service:
+    build:
+      context: .
+      dockerfile: docker/ml.Dockerfile
+    image: api-sentinel-ml:latest
+    container_name: api-sentinel-ml
+    ports:
+      - "8000:8000"
+    environment:
+      - PORT=8000
+      - HOST=0.0.0.0
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    networks:
+      - sentinel-network
+
+  # ============================================================================
+  # PostgreSQL Database (API Sentinel Backend Persistence)
+  # ============================================================================
+  postgres:
+    image: postgres:17-alpine
+    container_name: api-sentinel-postgres
+    environment:
+      POSTGRES_DB: ${DB_NAME:-api_sentinel}
+      POSTGRES_USER: ${DB_USERNAME:-sentinel_user}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-sentinel_dev_pass}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - sentinel-network
+
+  # ============================================================================
+  # Backend Service (Spring Boot 3.3.4 / Java 21)
+  # ============================================================================
+  backend:
+    build:
+      context: .
+      dockerfile: docker/backend.Dockerfile
+    image: api-sentinel-backend:latest
+    container_name: api-sentinel-backend
+    ports:
+      - "8080:8080"
+    environment:
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_NAME=${DB_NAME:-api_sentinel}
+      - DB_USERNAME=${DB_USERNAME:-sentinel_user}
+      - DB_PASSWORD=${DB_PASSWORD:-sentinel_dev_pass}
+      - SERVER_PORT=8080
+      - SPRING_PROFILES_ACTIVE=dev
+    depends_on:
+      - postgres
+      - ml-service
+    networks:
+      - sentinel-network
+
+networks:
+  sentinel-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
