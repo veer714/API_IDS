@@ -1,0 +1,93 @@
+{
+  "benchmark_metadata": {
+    "iterations": 500,
+    "os": "Windows",
+    "os_release": "11",
+    "cpu_architecture": "AMD64",
+    "python_version": "3.12.3",
+    "total_benchmark_time_seconds": 68.25,
+    "throughput_rps": 7.33,
+    "memory_usage_mb": 0.8,
+    "memory_delta_mb": 0.8
+  },
+  "artifact_sizes": {
+    "anomaly_detector.joblib": "60.74 MB",
+    "feature_pipeline.joblib": "0.05 MB",
+    "hybrid_fusion.joblib": "0.00 MB",
+    "metadata.json": "0.00 MB",
+    "payload_classifier.joblib": "0.55 MB",
+    "supervised_classifier.joblib": "1.11 MB"
+  },
+  "latency_breakdown_ms": {
+    "feature_extraction": {
+      "mean": 4.594,
+      "std": 1.545,
+      "p50": 4.476,
+      "p90": 5.034,
+      "p95": 5.254,
+      "p99": 5.812,
+      "min": 3.751,
+      "max": 37.713
+    },
+    "isolation_forest": {
+      "mean": 86.41,
+      "std": 3.856,
+      "p50": 85.609,
+      "p90": 90.328,
+      "p95": 93.538,
+      "p99": 100.973,
+      "min": 76.232,
+      "max": 114.295
+    },
+    "payload_classifier": {
+      "mean": 43.588,
+      "std": 4.005,
+      "p50": 43.797,
+      "p90": 46.263,
+      "p95": 46.943,
+      "p99": 54.449,
+      "min": 31.485,
+      "max": 77.236
+    },
+    "supervised_classifier": {
+      "mean": 1.637,
+      "std": 0.939,
+      "p50": 1.539,
+      "p90": 1.814,
+      "p95": 1.965,
+      "p99": 2.512,
+      "min": 1.281,
+      "max": 21.646
+    },
+    "risk_fusion": {
+      "mean": 0.077,
+      "std": 0.009,
+      "p50": 0.074,
+      "p90": 0.087,
+      "p95": 0.093,
+      "p99": 0.116,
+      "min": 0.063,
+      "max": 0.127
+    },
+    "explainability": {
+      "mean": 0.131,
+      "std": 0.057,
+      "p50": 0.157,
+      "p90": 0.183,
+      "p95": 0.191,
+      "p99": 0.262,
+      "min": 0.049,
+      "max": 0.327
+    },
+    "end_to_end_total": {
+      "mean": 136.457,
+      "std": 6.612,
+      "p50": 136.234,
+      "p90": 141.164,
+      "p95": 143.976,
+      "p99": 168.936,
+      "min": 118.439,
+      "max": 184.474
+    }
+  }
+}

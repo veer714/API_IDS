@@ -1,0 +1,215 @@
+{
+  "model_name": "API Sentinel Hybrid Intrusion Detection Engine",
+  "model_version": "v1.0.0-hybrid",
+  "training_date": "2026-10-04T15:15:53.748671+00:00",
+  "random_seed": 42,
+  "dataset_size": 50000,
+  "train_samples": 35000,
+  "val_samples": 7500,
+  "test_samples": 7500,
+  "best_supervised_algorithm": "XGBoost",
+  "classes": [
+    "BRUTE_FORCE",
+    "COMMAND_INJECTION",
+    "ENDPOINT_ENUMERATION",
+    "NORMAL",
+    "PARAMETER_TAMPERING",
+    "PATH_TRAVERSAL",
+    "RATE_ABUSE",
+    "SQL_INJECTION",
+    "XSS"
+  ],
+  "optimized_fusion_weights": {
+    "behavioral_anomaly": 0.1044,
+    "payload_score": 0.2856,
+    "auth_score": 0.08,
+    "rate_score": 0.08,
+    "classifier_prob": 0.45
+  },
+  "calibrated_thresholds": {
+    "threshold_normal": 0.22,
+    "threshold_suspicious": 0.42,
+    "threshold_high": 0.57,
+    "validation_f1_at_threshold": 1.0
+  },
+  "test_metrics": {
+    "isolation_forest": {
+      "precision": 0.5639,
+      "recall": 0.9807,
+      "f1": 0.7161,
+      "fpr": 0.1665,
+      "tp": 1324,
+      "fp": 1024,
+      "tn": 5126,
+      "fn": 26,
+      "roc_auc": 0.9835,
+      "pr_auc": 0.9231
+    },
+    "payload_classifier": {
+      "precision": 1.0,
+      "recall": 0.8437,
+      "f1": 0.9152,
+      "fpr": 0.0,
+      "tp": 1139,
+      "fp": 0,
+      "tn": 6150,
+      "fn": 211,
+      "roc_auc": 0.9569,
+      "pr_auc": 0.8882
+    },
+    "best_supervised": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "fpr": 0.0,
+      "tp": 1350,
+      "fp": 0,
+      "tn": 6150,
+      "fn": 0,
+      "roc_auc": 1.0,
+      "pr_auc": 1.0,
+      "macro_f1": 1.0
+    },
+    "full_hybrid_system": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "fpr": 0.0,
+      "tp": 1350,
+      "fp": 0,
+      "tn": 6150,
+      "fn": 0,
+      "roc_auc": 1.0,
+      "pr_auc": 1.0
+    }
+  },
+  "supervised_benchmark": {
+    "LogisticRegression": {
+      "precision": 0.9978,
+      "recall": 1.0,
+      "f1": 0.9989,
+      "fpr": 0.0005,
+      "tp": 1350,
+      "fp": 3,
+      "tn": 6147,
+      "fn": 0,
+      "roc_auc": 1.0,
+      "pr_auc": 1.0,
+      "macro_f1": 0.9984
+    },
+    "RandomForest": {
+      "precision": 0.9868,
+      "recall": 1.0,
+      "f1": 0.9934,
+      "fpr": 0.0029,
+      "tp": 1350,
+      "fp": 18,
+      "tn": 6132,
+      "fn": 0,
+      "roc_auc": 1.0,
+      "pr_auc": 1.0,
+      "macro_f1": 0.9928
+    },
+    "XGBoost": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "fpr": 0.0,
+      "tp": 1350,
+      "fp": 0,
+      "tn": 6150,
+      "fn": 0,
+      "roc_auc": 1.0,
+      "pr_auc": 1.0,
+      "macro_f1": 1.0
+    }
+  },
+  "ablation_study": {
+    "Behavioral Only": {
+      "precision": 0.8726,
+      "recall": 0.9385,
+      "f1": 0.9044,
+      "fpr": 0.0301,
+      "tp": 1267,
+      "fp": 185,
+      "tn": 5965,
+      "fn": 83,
+      "roc_auc": 0.9835,
+      "pr_auc": 0.9231,
+      "operating_threshold": 0.85
+    },
+    "Payload Only": {
+      "precision": 1.0,
+      "recall": 0.8437,
+      "f1": 0.9152,
+      "fpr": 0.0,
+      "tp": 1139,
+      "fp": 0,
+      "tn": 6150,
+      "fn": 211,
+      "roc_auc": 0.9569,
+      "pr_auc": 0.8882,
+      "operating_threshold": 0.22
+    },
+    "Behavioral + Payload": {
+      "precision": 0.976,
+      "recall": 0.9941,
+      "f1": 0.985,
+      "fpr": 0.0054,
+      "tp": 1342,
+      "fp": 33,
+      "tn": 6117,
+      "fn": 8,
+      "roc_auc": 0.9996,
+      "pr_auc": 0.9969,
+      "operating_threshold": 0.6
+    },
+    "Behavioral + Auth + Rate": {
+      "precision": 0.9307,
+      "recall": 0.9052,
+      "f1": 0.9178,
+      "fpr": 0.0148,
+      "tp": 1222,
+      "fp": 91,
+      "tn": 6059,
+      "fn": 128,
+      "roc_auc": 0.9839,
+      "pr_auc": 0.936,
+      "operating_threshold": 0.49
+    },
+    "Supervised Only": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "fpr": 0.0,
+      "tp": 1350,
+      "fp": 0,
+      "tn": 6150,
+      "fn": 0,
+      "roc_auc": 1.0,
+      "pr_auc": 1.0,
+      "operating_threshold": 0.15
+    },
+    "Full Hybrid (Optimized)": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "fpr": 0.0,
+      "tp": 1350,
+      "fp": 0,
+      "tn": 6150,
+      "fn": 0,
+      "roc_auc": 1.0,
+      "pr_auc": 1.0,
+      "operating_threshold": 0.22
+    }
+  },
+  "unseen_attack_experiment": {
+    "holdout_category": "COMMAND_INJECTION",
+    "test_sample_count": 134,
+    "supervised_malicious_detection_rate": 0.9627,
+    "anomaly_detector_detection_rate": 0.9925,
+    "payload_classifier_detection_rate": 1.0,
+    "hybrid_fusion_detection_rate": 1.0
+  }
+}
