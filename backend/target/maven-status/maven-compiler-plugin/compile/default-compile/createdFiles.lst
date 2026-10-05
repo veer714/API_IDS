@@ -1,6 +1,0 @@
-com/apisentinel/config/SecurityConfig.class
-com/apisentinel/controller/HealthController.class
-com/apisentinel/config/OpenApiConfig.class
-com/apisentinel/ApiSentinelApplication.class
-com/apisentinel/dto/HealthResponse$HealthResponseBuilder.class
-com/apisentinel/dto/HealthResponse.class

@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: #07090e;
+  color: #f1f5f9;
+  overflow-x: hidden;
+}
+
+/* Custom Sleek Dark Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0b0f19;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+
+/* Security Decision Badges */
+.badge-allow {
+  @apply bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-mono text-xs px-2 py-0.5 rounded font-medium inline-flex items-center gap-1;
+}
+.badge-challenge {
+  @apply bg-amber-500/10 text-amber-400 border border-amber-500/20 font-mono text-xs px-2 py-0.5 rounded font-medium inline-flex items-center gap-1;
+}
+.badge-throttle {
+  @apply bg-orange-500/10 text-orange-400 border border-orange-500/20 font-mono text-xs px-2 py-0.5 rounded font-medium inline-flex items-center gap-1;
+}
+.badge-block {
+  @apply bg-rose-500/10 text-rose-400 border border-rose-500/20 font-mono text-xs px-2 py-0.5 rounded font-medium inline-flex items-center gap-1;
+}
+
+/* Severity Badges */
+.severity-critical {
+  @apply bg-rose-500/15 text-rose-300 border border-rose-500/30 text-xs px-2 py-0.5 rounded font-semibold inline-flex items-center gap-1;
+}
+.severity-high {
+  @apply bg-orange-500/15 text-orange-300 border border-orange-500/30 text-xs px-2 py-0.5 rounded font-semibold inline-flex items-center gap-1;
+}
+.severity-medium {
+  @apply bg-amber-500/15 text-amber-300 border border-amber-500/30 text-xs px-2 py-0.5 rounded font-semibold inline-flex items-center gap-1;
+}
+.severity-low {
+  @apply bg-sky-500/15 text-sky-300 border border-sky-500/30 text-xs px-2 py-0.5 rounded font-medium inline-flex items-center gap-1;
+}
+.severity-info {
+  @apply bg-slate-500/15 text-slate-300 border border-slate-500/30 text-xs px-2 py-0.5 rounded font-medium inline-flex items-center gap-1;
+}
+
+/* Glass & Card Styling */
+.soc-card {
+  @apply bg-sentinel-900 border border-sentinel-800 rounded-lg p-5 shadow-sm hover:border-sentinel-700 transition-colors;
+}
+
+.soc-table-header {
+  @apply bg-sentinel-850 text-slate-400 text-xs font-medium uppercase tracking-wider px-4 py-3 text-left border-b border-sentinel-800;
+}
+
+.soc-table-row {
+  @apply border-b border-sentinel-800/60 hover:bg-sentinel-850/60 transition-colors text-sm;
+}

@@ -1,0 +1,13 @@
+{
+  "name": "demo-api",
+  "version": "1.0.0",
+  "description": "API Sentinel Demo Target Service - E-Commerce & Identity API",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.1",
+    "cors": "^2.8.5"
+  }
+}

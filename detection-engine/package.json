@@ -1,0 +1,12 @@
+{
+  "name": "detection-engine",
+  "version": "1.0.0",
+  "description": "API Sentinel Intrusion Detection Engine - Hybrid Rule & ML Fusion Pipeline",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "dependencies": {
+    "axios": "^1.7.9"
+  }
+}
