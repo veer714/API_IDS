@@ -66,7 +66,7 @@ flowchart TB
     end
 
     subgraph EdgeGateway["Reverse Proxy Gateway Tier (:8081)"]
-        Gateway["⚡ API Sentinel Reverse Proxy Gateway\n(Express / Node.js Stream Interceptor)"]
+        Gateway["⚡ API Sentinel Reverse Proxy Gateway"]
     end
 
     subgraph CoreBackend["Central Nervous System (:8080)"]
@@ -84,7 +84,7 @@ flowchart TB
     end
 
     subgraph TargetAPI["Upstream Microservices (:5000)"]
-        DemoAPI["🛒 Enterprise Target API\n(Protected Downstream Application)"]
+        DemoAPI["🛒 Enterprise Target API"]
     end
 
     subgraph DatabaseTier["Persistence Layer (:5432)"]
@@ -92,32 +92,32 @@ flowchart TB
     end
 
     subgraph FrontendApp["SOC Operations Console (:3000)"]
-        ReactApp["💻 React 18 / Vite / TailwindCSS SPA\n(High-Density Dark SOC Dashboard)"]
+        ReactApp["💻 React 18 / Vite / TailwindCSS SPA"]
     end
 
-    Consumer -->|1. HTTP Request| Gateway
-    Gateway -->|2. POST /api/v1/security/evaluate| Backend
-    Backend -->|3a. Check Signatures| RuleEngine
-    Backend -->|3b. Check IP Rates| RateLimiter
-    Backend -->|3c. POST /api/v1/predict| MLService
+    Consumer -->|"1. HTTP Request"| Gateway
+    Gateway -->|"2. POST /api/v1/security/evaluate"| Backend
+    Backend -->|"3a. Check Signatures"| RuleEngine
+    Backend -->|"3b. Check IP Rates"| RateLimiter
+    Backend -->|"3c. POST /api/v1/predict"| MLService
     MLService --> XGB
     MLService --> IsoForest
-    XGB -->|Payload Probabilities| MLService
-    IsoForest -->|Anomaly Scores| MLService
-    MLService -->|ML Risk Inference| Fusion
-    Fusion -->|Unified Verdict: ALLOW/CHALLENGE/THROTTLE/BLOCK| Backend
-    Backend -->|4. Persist Telemetry & Threat Events| Postgres
-    Backend -.->|5. Real-Time Telemetry Stream| StompBroker
-    StompBroker -.->|WebSocket /topic/*| ReactApp
-    Backend -->|6. Return Security Decision| Gateway
+    XGB -->|"Payload Probabilities"| MLService
+    IsoForest -->|"Anomaly Scores"| MLService
+    MLService -->|"ML Risk Inference"| Fusion
+    Fusion -->|"Unified Verdict"| Backend
+    Backend -->|"4. Persist Telemetry"| Postgres
+    Backend -.->|"5. Real-Time Stream"| StompBroker
+    StompBroker -.->|"WebSocket Telemetry"| ReactApp
+    Backend -->|"6. Return Security Decision"| Gateway
 
-    Gateway -->|7a. If ALLOW / CHALLENGE PASS| DemoAPI
-    DemoAPI -->|8a. Upstream Response| Gateway
-    Gateway -->|9a. Forwarded 200 OK| Consumer
-    Gateway -.->|7b. If BLOCK / THROTTLE (403/429)| Consumer
+    Gateway -->|"7a. If ALLOW"| DemoAPI
+    DemoAPI -->|"8a. Upstream Response"| Gateway
+    Gateway -->|"9a. Forwarded 200 OK"| Consumer
+    Gateway -.->|"7b. If BLOCK or THROTTLE"| Consumer
 
-    Analyst -->|HTTPS| ReactApp
-    ReactApp -->|REST API JWT| Backend
+    Analyst -->|"HTTPS"| ReactApp
+    ReactApp -->|"REST API JWT"| Backend
 ```
 
 ---

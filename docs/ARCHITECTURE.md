@@ -37,20 +37,20 @@ flowchart TB
         DemoAPI[Upstream Enterprise API / Microservices]
     end
 
-    Client -->|1. HTTP Request| Gateway
-    Gateway -->|2. POST /api/v1/security/evaluate| Backend
-    Backend -->|3. Evaluate Signatures & Rate| Rules
-    Backend -->|4. Async POST /api/v1/predict| MLService
-    MLService -->|5. Payload Risk & Anomaly Score| Fusion
-    Fusion -->|6. Unified Decision: ALLOW/CHALLENGE/THROTTLE/BLOCK| Backend
-    Backend -->|7. Persist Telemetry & Threat Events| DB
-    Backend -->|8. Push WebSocket Event| StompBroker
-    StompBroker -.->|Real-time Telemetry| Browser
+    Client -->|"1. HTTP Request"| Gateway
+    Gateway -->|"2. POST /api/v1/security/evaluate"| Backend
+    Backend -->|"3. Evaluate Signatures & Rate"| Rules
+    Backend -->|"4. Async POST /api/v1/predict"| MLService
+    MLService -->|"5. Payload Risk & Anomaly Score"| Fusion
+    Fusion -->|"6. Unified Decision"| Backend
+    Backend -->|"7. Persist Telemetry"| DB
+    Backend -->|"8. Push WebSocket Event"| StompBroker
+    StompBroker -.->|"Real-time Telemetry"| Browser
 
-    Gateway -->|9a. If ALLOW / CHALLENGE PASS| DemoAPI
-    DemoAPI -->|9b. Upstream Response| Gateway
-    Gateway -->|9c. Forwarded Response| Client
-    Gateway -.->|10. If BLOCK / THROTTLE: 403/429 JSON Error| Client
+    Gateway -->|"9a. If ALLOW"| DemoAPI
+    DemoAPI -->|"9b. Upstream Response"| Gateway
+    Gateway -->|"9c. Forwarded Response"| Client
+    Gateway -.->|"10. If BLOCK or THROTTLE"| Client
 ```
 
 ---
